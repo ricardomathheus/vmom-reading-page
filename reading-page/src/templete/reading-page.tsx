@@ -32,7 +32,7 @@ export function ReadingPage(props:readingProps) {
                     <input 
                         type="range" 
                         min="0" max="100" 
-                        onInput={
+                        onChange={
                             event => {
                                 const inputValue = event.target.value
                                 setSepiaLevel(Number(inputValue)/100)
@@ -78,9 +78,9 @@ export function ReadingPage(props:readingProps) {
 
                 <label>
                     <input type="checkbox"
-                        onInput={
+                        onChange={
                             event => {
-                                event.target.checked 
+                                event.target.checked
                                 ? setThemeColor({
                                     backgroundColor: '#e8e8e8',
                                     textColor: 'black',
