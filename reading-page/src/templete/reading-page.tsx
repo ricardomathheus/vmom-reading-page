@@ -7,6 +7,7 @@ interface readingProps {
 export function ReadingPage(props:readingProps) {
     const [sepiaLevel, setSepiaLevel] = useState(0.5)
     const [contentFontSize, setContentFontSize] = useState(1)
+    const [contentFontFamily, setContentFontFamily] = useState('serif')
     const [themeColor, setThemeColor] = useState({backgroundColor: '#242424', textColor: 'white', contentBoxbackgroundColor: 'rgba(0,0,0,0.2)'})
     return (
         <div 
@@ -61,8 +62,7 @@ export function ReadingPage(props:readingProps) {
                                 event => {
                                     const element = event.target
                                     const selectedIndex = element.selectedIndex
-
-                                    console.log(element.options[selectedIndex].value)
+                                    
                                     setContentFontSize(Number(element.options[selectedIndex].value))
                                 
                             }
@@ -97,6 +97,24 @@ export function ReadingPage(props:readingProps) {
                     tema claro
                 </label>
 
+                <label>
+                <select 
+                        onChange={
+                                event => {
+                                    const element = event.target
+                                    const selectedIndex = element.selectedIndex
+
+                                    setContentFontFamily(element.options[selectedIndex].value)
+                                
+                            }
+                        }
+                    >
+                        <option value="serif">serif</option>
+                        <option value="sans-serif">sans-serif</option>
+                    </select>
+                    fonte
+                </label>
+
             </div>
             <div 
                 style={{
@@ -104,6 +122,7 @@ export function ReadingPage(props:readingProps) {
                     backgroundColor: themeColor.contentBoxbackgroundColor,
                     padding: '1rem',
                     borderRadius: '1rem',
+                    fontFamily: contentFontFamily
                 }}
             >
                 {props.content}
