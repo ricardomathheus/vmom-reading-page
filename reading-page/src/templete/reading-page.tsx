@@ -7,7 +7,7 @@ interface readingProps {
 export function ReadingPage(props:readingProps) {
     const [sepiaLevel, setSepiaLevel] = useState(0.5)
     const [contentFontSize, setContentFontSize] = useState(1)
-    const [themeColor, setThemeColor] = useState({backgroundColor: '#242424', textColor: 'white'})
+    const [themeColor, setThemeColor] = useState({backgroundColor: '#242424', textColor: 'white', contentBoxbackgroundColor: 'rgba(0,0,0,0.2)'})
     return (
         <div 
             style={{
@@ -81,8 +81,16 @@ export function ReadingPage(props:readingProps) {
                         onInput={
                             event => {
                                 event.target.checked 
-                                ? setThemeColor({backgroundColor: 'white', textColor: 'black'}) 
-                                : setThemeColor({backgroundColor: '#242424', textColor: 'white'})
+                                ? setThemeColor({
+                                    backgroundColor: '#e8e8e8',
+                                    textColor: 'black',
+                                    contentBoxbackgroundColor: 'rgba(255,255,255,255.2)'
+                                }) 
+                                : setThemeColor({
+                                    backgroundColor: '#242424',
+                                    textColor: 'white',
+                                    contentBoxbackgroundColor: 'rgba(0,0,0,0.2)'
+                                })
                             }
                         }
                     />
@@ -93,7 +101,7 @@ export function ReadingPage(props:readingProps) {
             <div 
                 style={{
                     fontSize: `${contentFontSize}em`,
-                    backgroundColor: 'rgba(0,0,0,0.2)',
+                    backgroundColor: themeColor.contentBoxbackgroundColor,
                     padding: '1rem',
                     borderRadius: '1rem',
                 }}
