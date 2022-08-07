@@ -32,7 +32,7 @@ export function ReadingPage(props:readingProps) {
                 </label>
                     
                 <label>
-                    <input 
+{/*                     <input 
                         type="range" 
                         min="0" 
                         max="100" 
@@ -44,7 +44,24 @@ export function ReadingPage(props:readingProps) {
                             }
                         }
                         
-                    />
+                    /> */}
+
+                    <select 
+                        onChange={
+                                event => {
+                                    const element = event.target
+                                    const selectedIndex = element.selectedIndex
+
+                                    console.log(element.options[selectedIndex].value)
+                                    setContentFontSize(Number(element.options[selectedIndex].value))
+                                
+                            }
+                        }
+                    >
+                        <option value="1">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
+                    </select>
                     Tamanho da fonte
                 </label>
 
