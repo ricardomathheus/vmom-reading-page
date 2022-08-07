@@ -7,14 +7,24 @@ interface readingProps {
 export function ReadingPage(props:readingProps) {
     const [sepiaLevel, setSepiaLevel] = useState(0.5)
     const [contentFontSize, setContentFontSize] = useState(1)
+    const [themeColor, setThemeColor] = useState({backgroundColor: '#242424', textColor: 'white'})
     return (
-        <div style={{filter: `sepia(${sepiaLevel})`, color: 'white'}}>
+        <div 
+            style={{
+                filter: `sepia(${sepiaLevel})`,
+                backgroundColor: themeColor.backgroundColor,
+                color: themeColor.textColor,
+                padding: '1rem',
+                minHeight: 'calc(100vh - 2rem )'
+            }}
+        >
             <div 
                 style={{
                     display: 'flex',
                     flexWrap: 'wrap',
                     justifyContent: 'center',
-                    gap: '1rem'
+                    gap: '1rem',
+                    marginBottom: '1rem'
                 }}
             >
                 <label>
@@ -58,21 +68,34 @@ export function ReadingPage(props:readingProps) {
                             }
                         }
                     >
-                        <option value="1">1</option>
-                        <option value="1.5">1.5</option>
-                        <option value="2">2</option>
+                        <option value="0.5">0.5x</option>
+                        <option value="1" selected>1x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2x</option>
                     </select>
                     Tamanho da fonte
+                </label>
+
+                <label>
+                    <input type="checkbox"
+                        onInput={
+                            event => {
+                                event.target.checked 
+                                ? setThemeColor({backgroundColor: 'white', textColor: 'black'}) 
+                                : setThemeColor({backgroundColor: '#242424', textColor: 'white'})
+                            }
+                        }
+                    />
+                    tema claro
                 </label>
 
             </div>
             <div 
                 style={{
                     fontSize: `${contentFontSize}em`,
-                    margin: '1rem',
                     backgroundColor: 'rgba(0,0,0,0.2)',
                     padding: '1rem',
-                    borderRadius: '1rem'
+                    borderRadius: '1rem',
                 }}
             >
                 {props.content}
